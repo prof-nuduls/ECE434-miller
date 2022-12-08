@@ -1,75 +1,125 @@
 #!/usr/bin/env python3
 
-#import curses
+# Derick Miller
+# ECE434 hw01 - Etch-a-Sketch 
+# December 7, 2022
 
-# demo-ncurses-hello-world.py
 
 import curses
 from curses import wrapper
-import sys
+import time
 
 def main():
     wrapper(curses_main)
 
 
-def curses_main(stdscr):
-    Welcome(stdscr)
-    game(stdscr)
+def curses_main(screen):
+    curses.curs_set(0)
 
+    Welcome(screen)
+    max = game(screen)
+    printBounds(screen,max)
+    x = 0
+    y = 0
     while True:
-        c = stdscr.getch()
+        c = screen.getch()
         if c == ord('q'):
             break
-        elif c == curse.KEY_UP:
+        elif c == curses.KEY_UP:
             y -= 1
-        elif c == curse.KEY_DOWN:
+        elif c == curses.KEY_DOWN:
             y += 1
-        elif c == curse.KEY_LEFT:
-            x -= 1
-        elif c == curse.KEY_RIGHT:
-            x += 1
-
+        elif c == curses.KEY_LEFT:
+            x -= 2
+        elif c == curses.KEY_RIGHT:
+            x += 2
+        elif c == ord('c'):
+            screen.clear()
+            screen.refresh()
+        else:
+            pass
         
+        if (x >= max*2):
+            x = max*2 - 2
+        if (y >= max):
+            y = max - 1
+        if (x <= 0):
+            x = 0
+        if (y <= 0):
+            y = 0   
+        printBounds(screen,max)
+        screen.addstr(y+1,x+1,"*")
+        screen.refresh()
+
+    
         
 
 ## function definitions
-def Welcome(stdscr):
-    stdscr.addstr(0,0,"\nHELLO! Welcome to Etch-a-Sketch!\n\r")
-    stdscr.addstr(0,0,"----------------------------------\n\r")
-    stdscr.addstr(0,0,"            Instructions          \n\r")
-    stdscr.addstr(0,0,"begin by choosing the canvas size, then choose your start position\n\r")
-    stdscr.addstr(0,0,"then the game will begin and you can move your cursor\n\n\r")
-    stdscr.refresh()
-
-def game(stdscr):
-    game_size = int(get_input(stdscr,0,0,"enter any integer to determine canvas size e.g. 8 = 8x8: "))
-
-    stdscr.addstr(0,0,"\n\ryou have made the canvas {} by {}\n\r".format(game_size,game_size))
-    stdscr.refresh()
-
-
-    x,y = get_input(stdscr,3,0,"where do you want to start? e.g. 0,0 for (0,0):  ").split(",")
-    x = int(x)
-    y = int(y)
-    stdscr.refresh()
-
-    while(1):
-        stdscr.refresh()
-        if (x <= game_size and y <= game_size):
-            stdscr.addstr(0,0,"\n\ryou are starting at ({},{})\n\r".format(x,y))
+def Welcome(screen):
+    screen.addstr(0,0,"HELLO! Welcome to Etch-a-Sketch!")
+    screen.refresh()
+    time.sleep(2)
+    screen.addstr(1,0,"----------------------------------")
+    screen.addstr(2,0,"            Instructions          ")
+    screen.addstr(3,0,"----------------------------------")
+    screen.addstr(4,0,"- begin by choosing the canvas size, when prompted")
+    screen.addstr(5,0,"- control your cursor with the arrow keys")
+    screen.addstr(6,0,"- clear the canvas by clicking 'c'")
+    screen.addstr(7,0,"- exit the game by clicking 'q' ")
+    screen.refresh()
+    time.sleep(3)
+    screen.addstr(10,0,"click SPACE to continue")
+    while True:
+        c = screen.getch()
+        if (c == ord(' ')):
             break
         else:
-            stdscr.addstr(0,0,"\n\r that is not a possible starting point!\n\r\n")
-            x,y = get_input(stdscr,0,0,"where do you want to start? e.g. 0,0 for (0,0):  ").split(",")
-            x = int(x)
-            y = int(y)
-    return game_size,x,y
+            pass
+    screen.clear()
+    screen.refresh()
+   
+
+def game(screen):
+    while True:
+        try:
+            num = game_size = int(get_input(screen,0,0,"type any integer and click enter to determine canvas size e.g. 8 = 8x8: "))
+            break
+
+        except ValueError:
+            screen.clear()
+            screen.addstr(0,0,'Please enter an integer. Try Again.')
+            screen.refresh()
+            time.sleep(2)
+            screen.clear()
+            
+        
+
+    screen.addstr(0,0,"\n\ryou have made the canvas {} by {}\n\r".format(game_size,game_size))
+    screen.refresh()
+    time.sleep(2)
+    screen.clear()
+
+    return game_size
     
-def get_input(stdscr, r, c, prompt_string):
+def get_input(screen, r, c, prompt_string):
     curses.echo() 
-    stdscr.addstr(r, c, prompt_string)
-    stdscr.refresh()
-    input = stdscr.getstr(r + 1, c, 20)
+    screen.addstr(r, c, prompt_string)
+    screen.refresh()
+    input = screen.getstr(r + 1, c, 20)
     return input  #       ^^^^  reading input at next line  
 
+def printBounds(screen,max):
+    for i in range(max+2):
+        for j in range((2*max)+1):
+            if ((i == 0) or (i==max+1)):
+                screen.addstr(i,j,"-")
+            if ((j == 0) or (j== (2*max))):
+                screen.addstr(i,j,"|")
+
+    
+    screen.addstr(max+9,0,"            Instructions          ")
+    screen.addstr(max+10,0,"- control your cursor with the arrow keys")
+    screen.addstr(max+11,0,"- clear the canvas by clicking 'c'")
+    screen.addstr(max+12,0,"- exit the game by clicking 'q' ")
+                
 main()
