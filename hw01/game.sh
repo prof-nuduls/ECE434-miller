@@ -1,18 +1,22 @@
 #!/usr/bin/env python3
 
+# game.sh
+
 # Derick Miller
 # ECE434 hw01 - Etch-a-Sketch 
 # December 7, 2022
 
+# Description: run this in your command prompt and it will open up a game of etch a sketch.
 
 import curses
 from curses import wrapper
 import time
 
+# curses window setup
 def main():
     wrapper(curses_main)
 
-
+# the actual game and control/input monitoring
 def curses_main(screen):
     curses.curs_set(0)
 
@@ -55,6 +59,8 @@ def curses_main(screen):
         
 
 ## function definitions
+
+# welcome page
 def Welcome(screen):
     screen.addstr(0,0,"HELLO! Welcome to Etch-a-Sketch!")
     screen.refresh()
@@ -79,6 +85,7 @@ def Welcome(screen):
     screen.refresh()
    
 
+# gets the canvas size 
 def game(screen):
     while True:
         try:
@@ -92,15 +99,14 @@ def game(screen):
             time.sleep(2)
             screen.clear()
             
-        
-
     screen.addstr(0,0,"\n\ryou have made the canvas {} by {}\n\r".format(game_size,game_size))
     screen.refresh()
     time.sleep(2)
     screen.clear()
 
     return game_size
-    
+
+# reads users input on curses window 
 def get_input(screen, r, c, prompt_string):
     curses.echo() 
     screen.addstr(r, c, prompt_string)
@@ -108,6 +114,7 @@ def get_input(screen, r, c, prompt_string):
     input = screen.getstr(r + 1, c, 20)
     return input  #       ^^^^  reading input at next line  
 
+#prints the bounds for the game and the instructions
 def printBounds(screen,max):
     for i in range(max+2):
         for j in range((2*max)+1):
@@ -115,7 +122,6 @@ def printBounds(screen,max):
                 screen.addstr(i,j,"-")
             if ((j == 0) or (j== (2*max))):
                 screen.addstr(i,j,"|")
-
     
     screen.addstr(max+9,0,"            Instructions          ")
     screen.addstr(max+10,0,"- control your cursor with the arrow keys")
