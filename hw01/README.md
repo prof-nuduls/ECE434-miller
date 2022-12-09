@@ -9,3 +9,4 @@
 * Control cursor by using arrow keys
 * Clear screen by pressing "c"
 * Quit game by pressing "q"
+

@@ -25,6 +25,7 @@ def curses_main(screen):
     printBounds(screen,max)
     x = 0
     y = 0
+    screen.addstr(y+1,x+1,"*")
     while True:
         c = screen.getch()
         if c == ord('q'):
