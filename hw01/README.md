@@ -1,5 +1,5 @@
 # HW01 Etch-a-Sketch
-=====
+======
 ## Derick Miller 
 
 > I created Etch-a-Sketch using the python curses library. There is a welcome page, that explain the instructions, a prompt to select canvas size, and then the game starts.
