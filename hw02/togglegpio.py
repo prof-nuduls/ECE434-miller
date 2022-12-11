@@ -9,7 +9,7 @@ import time
 import os
 
 # P9.15 is 48
-pin = "48"
+pin = "51"
 GPIOPATH = '/sys/class/gpio/'
 
 # Make sure pin is exported
@@ -28,11 +28,11 @@ f = open(GPIOPATH+"gpio"+pin+"/value","w")
 while True:
     f.seek(0)
     f.write("1")
-    time.sleep(0.5)
+    #time.sleep(0.5)
 
     f.seek(0)
     f.write("0")
-    time.sleep(0.5)
+    #time.sleep(0.5)
 f.close()
 
 

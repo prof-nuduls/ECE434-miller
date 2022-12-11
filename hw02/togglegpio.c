@@ -58,17 +58,17 @@ int main(int argc, char** argv)
 		if (toggle){
             lseek(gpio_fd,0,SEEK_SET);
 			write(gpio_fd, "1", 2);
-            printf("...value set to %d...\n", toggle);
+            //printf("...value set to %d...\n", toggle);
         }
 		else{
             lseek(gpio_fd,0,SEEK_SET);
 			write(gpio_fd, "0", 2);
-            printf("...value set to %d...\n", toggle);
+            //printf("...value set to %d...\n", toggle);
     }
 			
 		
 		//Pause for a while
-		usleep(onOffTime);
+		//usleep(onOffTime);
 	}
     gpio_fd_close(gpio_fd);
 	return 0;

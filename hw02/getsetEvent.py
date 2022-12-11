@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # //////////////////////////////////////
+#   Derick Miller
+#   December 
 # 	getsetEvent.py
 #   Like getset.py but uses events.
 #   Get the value of P8_16 and write it to P9_14. 
@@ -15,9 +17,15 @@ import gpiod
 import sys
 
 CONSUMER='getset'
-CHIP='1'
-getoffsets=[14] # P8_16
-setoffests=[18] # P9_14
+CHIP0='0'
+CHIP1='1'
+getoffsets0=[30,31] # P8_16
+setoffests0=[5,4] # P9_14
+
+getoffsets1=[28,18] # P8_16
+setoffests1=[16,19] # P9_14
+
+
 
 def print_event(event):
     if event.type == gpiod.LineEvent.RISING_EDGE:
@@ -31,26 +39,44 @@ def print_event(event):
                                                            event.source.offset(),
                                                            event.sec, event.nsec))
 
-chip = gpiod.Chip(CHIP)
+chip0 = gpiod.Chip(CHIP0)
 
-getlines = chip.get_lines(getoffsets)
-getlines.request(consumer=CONSUMER, type=gpiod.LINE_REQ_EV_BOTH_EDGES)
+getlines0 = chip0.get_lines(getoffsets0)
+getlines0.request(consumer=CONSUMER, type=gpiod.LINE_REQ_EV_BOTH_EDGES)
 
-setlines = chip.get_lines(setoffests)
-setlines.request(consumer=CONSUMER, type=gpiod.LINE_REQ_DIR_OUT)
+setlines0 = chip0.get_lines(setoffests0)
+setlines0.request(consumer=CONSUMER, type=gpiod.LINE_REQ_DIR_OUT)
+
+chip1 = gpiod.Chip(CHIP1)
+
+getlines1 = chip1.get_lines(getoffsets1)
+getlines1.request(consumer=CONSUMER, type=gpiod.LINE_REQ_EV_BOTH_EDGES)
+
+setlines1 = chip1.get_lines(setoffests1)
+setlines1.request(consumer=CONSUMER, type=gpiod.LINE_REQ_DIR_OUT)
+
 
 print("Hit ^C to stop")
 
 while True:
-    ev_lines = getlines.event_wait(sec=1)
-    if ev_lines:
-        for line in ev_lines:
+    ev_lines0 = getlines0.event_wait()
+    ev_lines1 = getlines1.event_wait()
+    if ev_lines0:
+        for line in ev_lines0:
             event = line.event_read()
             print_event(event)
-    vals = getlines.get_values()
+    vals0 = getlines0.get_values()
+
+    if ev_lines1:
+        for line in ev_lines1:
+            event = line.event_read()
+            print_event(event)
+    vals1 = getlines1.get_values()
+    #print(vals)
     
     # for val in vals:
     #     print(val, end=' ')
-    # print('\r', end='')
+    #print('\r', end='')
+    setlines0.set_values(vals1)
 
-    setlines.set_values(vals)
+    setlines1.set_values(vals0)
