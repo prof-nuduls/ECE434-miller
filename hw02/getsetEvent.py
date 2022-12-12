@@ -66,13 +66,13 @@ while True:
             event = line.event_read()
             print_event(event)
     vals0 = getlines0.get_values()
+    print(vals0)
 
     if ev_lines1:
         for line in ev_lines1:
             event = line.event_read()
             print_event(event)
     vals1 = getlines1.get_values()
-    #print(vals)
     
     # for val in vals:
     #     print(val, end=' ')
