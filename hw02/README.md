@@ -22,6 +22,7 @@
 ---
 ## Table of GPIO Method Comparison
 |method|period|frequency|CPU Usage|
+|---|---|---|---|
 |Python||||
 |C||||
 |toggle1.py||||
