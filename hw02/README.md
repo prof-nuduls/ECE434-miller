@@ -13,6 +13,7 @@
 4. They differ because other processes on the chip slow and can interrupt the program.
 5. I use about 2.0 % CPU when running the script
 6. I experimented with the sleep values and found 
+
 |sleep time|period|CPU Usage|
 |---|---|---|
 |0.1|242.18ms|2.0 %|
