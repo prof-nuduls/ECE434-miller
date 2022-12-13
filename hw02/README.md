@@ -49,7 +49,8 @@
 
 ---
 ## Security
-
+1. ![changed name of port 22](https://github.com/prof-nuduls/ECE434-miller/blob/main/hw02/images/port_num.PNG)
+3. ![created a fail2ban server](https://github.com/prof-nuduls/ECE434-miller/blob/main/hw02/images/fail2ban_start.PNG)
 ---
 ## Updated Etch-a-Sketch
 >Notes:
