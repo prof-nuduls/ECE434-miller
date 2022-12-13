@@ -6,7 +6,7 @@
 # ECE434 hw01 - Etch-a-Sketch 
 # December 7, 2022
 
-# Description: run this in your command prompt and it will open up a game of etch a sketch.
+# Description: run this in your command prompt and it will open up a game of etch a sketch. Use Pinheaders P9_11 to P9_14 on the beagle bone to control the cursor
 
 import curses
 from curses import wrapper
