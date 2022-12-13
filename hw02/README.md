@@ -13,8 +13,10 @@
 > script file to toggle gpio pin, run in cmd line followed by GPIO number and period. (may need to uncomment the sleep line)
 #### togglegpio.py
 > direct method of toggling gpio pin with python
+#### getsetEvent.py
+> gets events from the buttons P9_11 through P9_14 and outputs the results onto the LEDs on P9_15 through P9_18
 #### togglepin
-> this is the compiled file of togglegpio.c, which uses lseek() to directly toggle a gpio pin
+> this is the compiled file of togglegpio.c, which uses lseek() to directly toggle a gpio pin. run in cmd line followed by period. (may need to uncomment the sleep line)
 #### toggle1
 > this is the compiled version of the toggle1.c, which uses C and gpiod to toggle a gpio pin.
 #### toggle2
