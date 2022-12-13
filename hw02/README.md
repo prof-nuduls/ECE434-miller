@@ -6,6 +6,28 @@
 > I used pins P9_11 through P9_18 on the Beagle Bone Black. Where P9_11 through P9_14 were used for push buttons, wired one side to 3.3V and the other to a pull down resistor and the other side to the GPIO pin. Then P9_15 through P9_18 were used for LEDs, wired one side to a current-limiting resistor to GND and the other to the GPIO pin.
 
 ---
+## Files and How to run them
+#### game_gpiod.sh
+> run in the command window, utilizes the buttons on P9_11 through P9_14 and these control the cursor to draw on the screen. There isn't a clear button yet, I was too lazy to add another button. Ctrl + C to quit.
+#### togglegpio.sh
+> script file to toggle gpio pin, run in cmd line followed by GPIO number and period. (may need to uncomment the sleep line)
+#### togglegpio.py
+> direct method of toggling gpio pin with python
+#### togglepin
+> this is the compiled file of togglegpio.c, which uses lseek() to directly toggle a gpio pin
+#### toggle1
+> this is the compiled version of the toggle1.c, which uses C and gpiod to toggle a gpio pin.
+#### toggle2
+> this is the compiled version of the toggle2.c, which uses C and gpiod to toggle 2 gpio pins.
+#### toggle1.py
+> uses python and gpiod to toggle a gpio pin.
+#### toggle2.py
+> uses python and gpiod to toggle 2 gpio pins.
+
+
+
+
+---
 ## Measuring a GPIO pin on an Oscilloscope
 1. I find the min voltage to be -40mV, and the max voltage to be around 3.36V.
 2. The period was 242.8 ms and the frequency 4.119 Hz.
@@ -48,6 +70,10 @@
 |toggle2.c|4.41 us|241.38 kHz|98.1%|
 
 ---
+## getsetEvent.py
+works
+
+---
 ## Security
 1. ![changed name of port 22](https://github.com/prof-nuduls/ECE434-miller/blob/main/hw02/images/port_num.PNG) 
    changed name of port 22
@@ -55,4 +81,4 @@
    created a fail2ban server
 ---
 ## Updated Etch-a-Sketch
->Notes:
+>Notes: ran into a lot of issues with retrieving values, found this to be due to curses.getch() looking for input through both gpiod and curses window shown not to work well together but overall went well.
