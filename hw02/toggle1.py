@@ -12,7 +12,7 @@ import gpiod
 import time
 
 LED_CHIP = 'gpiochip1'
-LED_LINE_OFFSET = [18]  # P9_14, run: gpioinfo | grep -i -e chip -e P9_14
+LED_LINE_OFFSET = [19]  # P9_14, run: gpioinfo | grep -i -e chip -e P9_14
 
 chip = gpiod.Chip(LED_CHIP)
 
@@ -21,7 +21,7 @@ lines.request(consumer='toggle1.py', type=gpiod.LINE_REQ_DIR_OUT)
 
 while True:
     lines.set_values([0])
-    time.sleep(0.1)
+    #time.sleep(0.1)
     lines.set_values([1])
-    time.sleep(0.1)
+   # time.sleep(0.1)
     
