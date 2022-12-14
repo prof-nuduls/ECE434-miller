@@ -34,8 +34,9 @@ def curses_main(screen):
     CONSUMER='getset'
     CHIP0='0'
     CHIP1='1'
-    getoffsets0=[30,31] # P8_16
-    getoffsets1=[28,18] # P8_16
+    
+    getoffsets0=[30,31] 
+    getoffsets1=[28,18] 
 
     chip0 = gpiod.Chip(CHIP0)
     getlines0 = chip0.get_lines(getoffsets0)
