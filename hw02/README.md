@@ -84,3 +84,21 @@ works
 ---
 ## Updated Etch-a-Sketch
 >Notes: ran into a lot of issues with retrieving values, found this to be due to curses.getch() looking for input through both gpiod and curses window shown not to work well together but overall went well.
+
+
+# hw02 grading
+
+| Points      | Description |
+| ----------- | ----------- |
+|  2/2 | Buttons and LEDs 
+|  0/8 | Etch-a-Sketch works
+|      | Measuring a gpio pin on an Oscilloscope 
+|  2/2 | Questions answered
+|  4/4 | Table complete
+|  0/2 | gpiod
+|      | Security
+|  1/1 | ssh port | I assume you mean port 2022
+|  1/1 | fail2ban
+| 10/20   | **Total**
+
+Demo your etch-a-sketch and I'll give some points back.
