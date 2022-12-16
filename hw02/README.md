@@ -91,14 +91,16 @@ works
 | Points      | Description |
 | ----------- | ----------- |
 |  2/2 | Buttons and LEDs 
-|  0/8 | Etch-a-Sketch works
+|  8/8 | Etch-a-Sketch works
 |      | Measuring a gpio pin on an Oscilloscope 
 |  2/2 | Questions answered
 |  4/4 | Table complete
-|  0/2 | gpiod
+|  2/2 | gpiod
 |      | Security
 |  1/1 | ssh port | I assume you mean port 2022
 |  1/1 | fail2ban
-| 10/20   | **Total**
+| 20/20   | **Total**
 
-Demo your etch-a-sketch and I'll give some points back.
+(Demo your etch-a-sketch and I'll give some points back.)
+
+Sorry about that I forgot to record your demo.  It's fixed now.
