@@ -27,14 +27,16 @@ bus.write_byte_data(address,2,setLow)
 bus.write_byte_data(address,3,setHigh)
 bus.write_byte_data(address1,2,setLow1)
 bus.write_byte_data(address1,3,setHigh1)
+bus.write_byte_data(address,1,2)
+bus.write_byte_data(address1,1,2)
 while True:
     vals = getlines.get_values()
     if (vals[0] == 1):
-        temp = bus.read_byte_data(address, 0)
+        temp=`i2cget -y 2 0x4a 01`
         print("Sensor 1: ",temp, end="\r")
     if(vals[1]==1):
-        temp1 = bus.read_byte_data(address1, 0)
+        temp1=`i2cget -y 2 0x49 01`
         print("Sensor 2: ",temp1, end="\r")
-
+    print(vals, end = "\r")
 
     time.sleep(0.25)
