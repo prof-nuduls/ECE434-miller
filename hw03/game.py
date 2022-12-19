@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 import time
 import smbus
+import gpiod
 
 eQEP = '2'
 COUNTERPATH = '/dev/bone/counter/'+eQEP+'/count0'
 eQEP1 = '1'
 COUNTERPATH1 = '/dev/bone/counter/'+eQEP1+'/count0'
 
-ms = 100
+ms = 75
 maxCount = '1000000'
 
 f = open(COUNTERPATH+'/ceiling','w')
@@ -35,8 +36,9 @@ bus.write_byte_data(matrix, 0xe7, 0)   # Full brightness (page 15)
 
 # The first byte is GREEN, the second is RED.
 game = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-]
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+game_init = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
 bus.write_i2c_block_data(matrix, 0, game)
 
 f = open(COUNTERPATH+'/count','r')
@@ -62,7 +64,15 @@ max = 8
 x = 0
 y = 0
 game[15-x] += 0x01
+game[14-x] += 0x01
 bus.write_i2c_block_data(matrix, 0, game)
+CONSUMER='getset'
+CHIP1='0'
+getoffsets1=[30] 
+
+chip1 = gpiod.Chip(CHIP1)
+getlines1 = chip1.get_lines(getoffsets1)
+getlines1.request(consumer=CONSUMER, type=gpiod.LINE_REQ_EV_BOTH_EDGES)
 while True:
     f.seek(0)
     data = f.read()[:-1]
@@ -83,9 +93,7 @@ while True:
 
 
     f1.seek(0) 
-    data1 = f1.read()[:-1]
-
-   
+    data1 = f1.read()[:-1]   
 
     if data1 != olddata1:
             # Compare the current count to the previous count to determine the direction of rotation
@@ -101,28 +109,43 @@ while True:
 
         ccw_count1 = 0
         cw_count1 = 0
-    
-  
-    if R == 'CCW':
+    vals1 = getlines1.get_values()
+    if vals1[0] == 1:
+        for i in range (len(game)):
+            game[i] = game[i] & 0x00
+    elif R == 'CCW':
         y -= 1
         if (y <= 0):
             y = 0   
+        for i in range (8):
+            game[i*2+1] = game[i*2+1] & 0x00
         game[15-x] = game[15-x] | 2**y
+        game[14-x] = game[14-x] | 2**y
+
     elif R == 'CW':
         y += 1
         if (y >= max):
             y = max -1
+        for i in range (8):
+            game[i*2+1] = game[i*2+1] & 0x00
         game[15-x] = game[15-x] | 2**y
+        game[14-x] = game[14-x] | 2**y
     elif L == 'CCW':
         x -= 2
         if (x <= 0):
             x = 0
+        for i in range (8):
+            game[i*2+1] = game[i*2+1] & 0x00
         game[15-x] = game[15-x] | 2**y
+        game[14-x] = game[14-x] | 2**y
     elif L == 'CW':
         x += 2
         if (x >= 2*max):
             x = 2*max -2
+        for i in range (8):
+            game[i*2+1] = game[i*2+1] & 0x00
         game[15-x] = game[15-x] | 2**y
+        game[14-x] = game[14-x] | 2**y
     
 
     bus.write_i2c_block_data(matrix, 0, game)
