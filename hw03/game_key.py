@@ -16,7 +16,6 @@ import time
 # https://www.adafruit.com/product/902
 
 import smbus
-import time
 bus = smbus.SMBus(2)  # Use i2c bus 1
 matrix = 0x70         # Use address 0x70
 
