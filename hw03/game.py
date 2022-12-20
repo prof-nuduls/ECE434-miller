@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+# game.py
+
+# Derick Miller
+# December 20, 2022
+
+#Description: runs a game of etch-a-sketch on 2 rotary encoders, a button (P9_11)
+# and a 8x8 LED matrix on I2C bus 2 address 0x70. The left encoder controls the left - right movement while 
+# the right encoder controls the up - down movement, and the push button clears the matrix.
+
 import time
 import smbus
 import gpiod
