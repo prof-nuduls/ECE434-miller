@@ -47,6 +47,17 @@
 >Notes: Ran into a lot of issues with Rotary encoders, but was able to get write example code that prints the count to the terminal. Then I got it to print whether the movement was CW or CCW based on the value of the previous count and the current count. However when you go below zero it loops back and causes a false CW movement so I added a portion that will count up to a target number of CW or CCW events then it will commit to the CW or CCW movement sort of like a debouncer in a way.
 
 
+# hw03 grading
 
+| Points      | Description | | |
+| ----------- | ----------- |-|-|
+|  8/8 | TMP101 
+|  2/2 |   | Documentation 
+|  5/5 | Etch-a-Sketch
+|  3/3 |   | setup.sh
+|  2/2 |   | Documentation
+| 20/20 | **Total**
 
+*My comments are in italics. --may*
 
+*Looks good.*
