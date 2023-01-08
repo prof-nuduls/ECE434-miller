@@ -8,7 +8,7 @@ COUNTERPATH = '/dev/bone/counter/'+eQEP+'/count0'
 eQEP1 = '1'
 COUNTERPATH1 = '/dev/bone/counter/'+eQEP1+'/count0'
 
-ms = 75
+ms = 10
 maxCount = '1000000'
 
 f = open(COUNTERPATH+'/ceiling','w')
