@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 
-# game.sh
+# game_key.py
 
 # Derick Miller
-# ECE434 hw01 - Etch-a-Sketch 
-# December 7, 2022
+# ECE434 hw03 - Etch-a-Sketch on LED Matrix  
+# December 20, 2022
 
-# Description: run this in your command prompt and it will open up a game of etch a sketch.
+# Description: For a 8x8 LED matrix at address 0x70 on I2C bus 2, it will run a game
+# of etch-a-sketch 
+
+# use the arrow keys to control the cursor, and click 'c' to clear.
 
 import curses
 from curses import wrapper
 import time
-#!/usr/bin/env python3
-# Write an 8x8 Red/Green LED matrix
-# https://www.adafruit.com/product/902
-
 import smbus
+
 bus = smbus.SMBus(2)  # Use i2c bus 1
 matrix = 0x70         # Use address 0x70
 

@@ -4,6 +4,17 @@
 import smbus
 import gpiod
 import time
+#Derick Miler
+# December 20, 2022
+# Uses I2C smbus to configure the TMP101 sensors in to interrupt mode
+# sets the T high and T low registers and whenever a temperature is 
+# below the low level or above the high level it sends a 1 on the GPIO pin
+# and then prints the value to the terminal when detected
+
+# NOTE: it will send a one once it goes below or above the temperature the first time
+# however, it will not send another interrupt unless it does the opposite of what it first detected
+# e.g. temp goes above 27 C it won't send a interrupt unless it goes below the low level temp 23 in this case
+
 
 # Initialize the I2C bus
 bus = smbus.SMBus(2)
@@ -13,7 +24,7 @@ chip = gpiod.Chip('0')
 lines = chip.get_lines([3, 2])
 lines.request(consumer='Temp Sensor', type=gpiod.LINE_REQ_EV_BOTH_EDGES)
 thigh = 27
-tlow = 24
+tlow = 23
 # Set up the sensors
 # Address 0x4a
 bus.write_byte_data(0x4a, 1, 0b11100110)
