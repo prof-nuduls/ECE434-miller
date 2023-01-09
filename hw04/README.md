@@ -1,0 +1,1 @@
+found the period to be 5.19us
