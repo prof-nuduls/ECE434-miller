@@ -58,9 +58,11 @@ mem[GPIO_OE:GPIO_OE+4] = struct.pack("<L", reg_status)
 # Writes to them affect only the pins whose bits are set to 1, making the next step much easier:
 try:
   while(True):
+    # comment out sleep for fast toggle
     mem[GPIO_SETDATAOUT:GPIO_SETDATAOUT+4] = struct.pack("<L", LED1)
+    time.sleep(0.5) 
     mem[GPIO_CLEARDATAOUT:GPIO_CLEARDATAOUT+4] = struct.pack("<L", LED1)
-    
+    time.sleep(0.5)
 
 except KeyboardInterrupt:
   mem.close()

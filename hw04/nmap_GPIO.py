@@ -28,7 +28,7 @@ GPIO_SETDATAOUT = 0x194
 GPIO_CLEARDATAOUT = 0x190
 USR3 = 1<<24 #GPIO1[24]
 USR2 = 1<<23 #GPIO1[23]
-switch1 = 1<<18 #GPIO0[14]
+switch1 = 1<<18 #GPIO1[18]
 switch2 = 1<<30 #GPIO0[30]
 
 # Next we need to make the mmap, using the desired size and offset:
