@@ -48,12 +48,12 @@
 ---
 
 ## LCD 
-#### added  onto the display
+## added  onto the display
  ![](https://github.com/prof-nuduls/ECE434-miller/blob/main/hw04/Images/image1.png) 
- #### rotated boris on the display 
+ ## rotated boris on the display 
  ![](https://github.com/prof-nuduls/ECE434-miller/blob/main/hw04/Images/image2.png) 
-  #### added text and changed the background color for tux
- ![](https://github.com/prof-nuduls/ECE434-miller/blob/main/hw04/Images/image2.png) 
+  ## added text and changed the background color for tux
+ ![](https://github.com/prof-nuduls/ECE434-miller/blob/main/hw04/Images/image3.png) 
  
    
 
