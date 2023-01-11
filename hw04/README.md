@@ -48,12 +48,22 @@
 ---
 
 ## LCD 
-## added  onto the display
+ #### boris_rot.jpg
+ > rotated version of the original boris
+   
+## added boris onto the display
  ![](https://github.com/prof-nuduls/ECE434-miller/blob/main/hw04/Images/image1.png) 
  ## rotated boris on the display 
  ![](https://github.com/prof-nuduls/ECE434-miller/blob/main/hw04/Images/image2.png) 
   ## added text and changed the background color for tux
  ![](https://github.com/prof-nuduls/ECE434-miller/blob/main/hw04/Images/image3.png) 
  
+ ## LCD Videos 
+ #### RedsNightmare.mpg 
+ > mpg video file dowloaded from examples
+ #### Swim.mpg 
+ > Video converted from .mov to .mpg to be played on the LCD screen
+ #### rotated_Swim.mpg
+ > Swim.mpg rotated 180 degrees
    
 
