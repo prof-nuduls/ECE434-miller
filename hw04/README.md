@@ -48,3 +48,7 @@
 ---
 
 ## LCD 
+#### added tux onto the display
+ ![](https://github.com/prof-nuduls/ECE434-miller/blob/main/hw04/Images/image1.png) 
+   
+
