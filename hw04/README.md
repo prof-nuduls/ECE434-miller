@@ -48,5 +48,3 @@
 ---
 
 ## LCD 
-#### not yet completed having beagle board issues on boot
-## 
