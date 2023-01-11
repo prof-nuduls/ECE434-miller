@@ -67,3 +67,17 @@
  > Swim.mpg rotated 180 degrees
    
 
+# hw04 grading
+
+| Points      | Description | |
+| ----------- | ----------- | - |
+|  2/2 | Memory map 
+|  4/4 | mmap()
+|  4/4 | i2c via Kernel
+|  5/5 | Etch-a-Sketch via flask
+|  5/5 | LCD display
+|      | Extras
+| 20/20 | **Total**
+*Looks good*
+*My comments are in italics. --may*
+
